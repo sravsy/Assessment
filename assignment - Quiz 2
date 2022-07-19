@@ -1,30 +1,54 @@
+# Define the function to find the sum and average of the dice values 
+#this function has 1 input parameter (list) and 2 return parameters
 def tot_avg_list(listDice:list):
     totalValue = sum(listDice)
     length = len(listDice)
     ave = totalValue/length
     return totalValue, ave
 
-
+#for a random value  
 import random
+
+#default list to assign the value of the dice
 mylist = [1,2,3,4,5,6]
+
 noOfTimes = int(input ('Enter how many times the dice to be rolled: '))
 listDice = []
+
+#this vaue is for whether user want to throw the dice multiple times.
 checkValue = 'Y'
 
+#for loop is allowing the user to perform it for 5 times 
 for j in range(0,5):
     if (checkValue == 'Y') or (checkValue == 'y') :
+        
+        #adding the dice values to the list
         for i in range(0,noOfTimes):
             listDice.append(random.choice(mylist))  
+            
         print('the dice values are : ', listDice)
         checkValue = 'N'
         checkValue = input('Do you want to try again? type Y')
 
-#print(listDice)
+#calling the function
 totalValue, average = tot_avg_list(listDice)
 
+#opening the file and saving the list values
 f = open("c:\\welcome.txt", "w")
 for i in range(0, len(listDice)):
     f.write(str(listDice[i])+"\t")
+    
+#saving the total and average values to the file
 f.write("\n" + "total value \t " +str(totalValue) )
 f.write("\n" + "average value \t " +str(average) )
 f.close()
+
+#opening in the file in read only mode
+f = open("c:\\welcome.txt", "r")
+print(f.read()) 
+f.close()
+
+#removing the file
+import os
+os.remove("c:\\welcome.txt")
+
