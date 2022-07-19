@@ -1,0 +1,30 @@
+def tot_avg_list(listDice:list):
+    totalValue = sum(listDice)
+    length = len(listDice)
+    ave = totalValue/length
+    return totalValue, ave
+
+
+import random
+mylist = [1,2,3,4,5,6]
+noOfTimes = int(input ('Enter how many times the dice to be rolled: '))
+listDice = []
+checkValue = 'Y'
+
+for j in range(0,5):
+    if (checkValue == 'Y') or (checkValue == 'y') :
+        for i in range(0,noOfTimes):
+            listDice.append(random.choice(mylist))  
+        print('the dice values are : ', listDice)
+        checkValue = 'N'
+        checkValue = input('Do you want to try again? type Y')
+
+#print(listDice)
+totalValue, average = tot_avg_list(listDice)
+
+f = open("c:\\welcome.txt", "w")
+for i in range(0, len(listDice)):
+    f.write(str(listDice[i])+"\t")
+f.write("\n" + "total value \t " +str(totalValue) )
+f.write("\n" + "average value \t " +str(average) )
+f.close()
